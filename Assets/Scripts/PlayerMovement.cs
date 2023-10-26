@@ -15,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float coyoteTime;
     public float jumpBuffer;
 
-    private bool grounded;
+    public LayerMask jumpableGround;
+
     private bool jumping;
     private bool jumpCancelled;
 
@@ -24,12 +25,15 @@ public class PlayerMovement : MonoBehaviour
 
     private float x;
     private Rigidbody2D rb;
+    private BoxCollider2D coll;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravityScale;
+
+        coll = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -37,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         x = Input.GetAxis("Horizontal");
 
-        if (grounded)
+        if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -57,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
+            rb.gravityScale = gravityScale;
             float jumpForce = Mathf.Sqrt(jumpHeight * (Physics2D.gravity.y * rb.gravityScale) * -2f) * rb.mass;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumping = true;
@@ -79,7 +84,9 @@ public class PlayerMovement : MonoBehaviour
                 jumping = false;
             }
         }
+
     }
+
     void FixedUpdate()
     {
         rb.velocity = new Vector2(x * speed, rb.velocity.y);
@@ -90,25 +97,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private bool IsGrounded()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            grounded = true;
-        }
-
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
     }
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            grounded = false;
-        }
-
-    }
-
-    // private bool IsGrounded()
-    // {
-    //     return Physics.OverlapBox(gc.position, gc.localScale/2, Quaternion.identity, gl);
-    // }
 }
