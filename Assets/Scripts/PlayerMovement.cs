@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask jumpableGround;
 
+    public bool facingRight;
+
     private bool jumping;
     private bool jumpCancelled;
 
@@ -40,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         x = Input.GetAxis("Horizontal");
+
+        Flip();
 
         if (IsGrounded())
         {
@@ -100,5 +104,16 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
+    }
+
+    private void Flip()
+    {
+        if (facingRight && x < 0f || !facingRight && x > 0f)
+        {
+            facingRight = !facingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 }
