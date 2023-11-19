@@ -3132,6 +3132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  accel: 0
+  decel: 0
+  inAirAccel: 0
   jumpHeight: 6
   gravityScale: 5
   fallGravityScale: 10
@@ -3141,7 +3144,10 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
-  facingRight: 0
+  dashPower: 0
+  dashTime: 0
+  dashCooldown: 0
+  conserveMomentum: 1
 --- !u!61 &1228812795
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4282,6 +4288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  accel: 10
+  decel: 10
+  inAirAccel: 1
   jumpHeight: 6
   gravityScale: 5
   fallGravityScale: 10
@@ -4291,7 +4300,10 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
-  facingRight: 1
+  dashPower: 25
+  dashTime: 0.2
+  dashCooldown: 0.25
+  conserveMomentum: 1
 --- !u!50 &1688249013
 Rigidbody2D:
   serializedVersion: 4

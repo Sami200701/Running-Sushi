@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask jumpableGround;
 
+    public float dashPower;
+    public float dashTime;
+    public float dashCooldown;
+
     public bool conserveMomentum;
 
     private bool facingRight;
@@ -29,6 +33,11 @@ public class PlayerMovement : MonoBehaviour
     private bool jumping;
     private bool jumpCancelled;
 
+    private bool dashing;
+    private bool canDash;
+
+    private float dashCooldownCounter;
+    private float dashBufferCounter;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
 
@@ -45,15 +54,23 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
 
         facingRight = true;
+        canDash = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (dashing)
+        {
+            return;
+        }
+
         moveInput = Input.GetAxis("Horizontal");
 
         coyoteTimeCounter -= Time.deltaTime;
         jumpBufferCounter -= Time.deltaTime;
+        dashCooldownCounter -= Time.deltaTime;
+        dashBufferCounter -= Time.deltaTime;
 
         if (moveInput != 0)
         {
@@ -82,18 +99,39 @@ public class PlayerMovement : MonoBehaviour
                 jumpCancelled = true;
                 coyoteTimeCounter = 0f;
             }
+        }
 
-            if (rb.velocity.y < 0f)
-            {
-                rb.gravityScale = fallGravityScale;
-                jumping = false;
-            }
+        if (rb.velocity.y < 0f)
+        {
+            rb.gravityScale = fallGravityScale;
+            dashCooldownCounter = 0;
+            jumping = false;
+        }
+
+        if (!canDash && IsGrounded() && dashCooldownCounter < 0f)
+        {
+            canDash = true;
+        }
+
+        if (Input.GetButtonDown("Dash") && canDash)
+        {
+            dashBufferCounter = jumpBuffer;
+        }
+
+        if (dashBufferCounter > 0f)
+        {
+            StartCoroutine(Dash());
         }
 
     }
 
     void FixedUpdate()
     {
+        if (dashing)
+        {
+            return;
+        }
+
         // rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         Run();
 
@@ -143,6 +181,28 @@ public class PlayerMovement : MonoBehaviour
         jumpCancelled = false;
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        dashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        if (facingRight) {
+            rb.velocity = Vector2.right * dashPower;
+        }
+        else
+        {
+            rb.velocity = Vector2.left * dashPower;
+        }
+        // tr.emitting = true;
+        yield return new WaitForSeconds(dashTime);
+        // tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        dashing = false;
+        dashCooldownCounter = dashCooldown;
+        dashBufferCounter = 0;
     }
 
     private void Flip()
