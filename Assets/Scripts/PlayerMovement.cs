@@ -17,6 +17,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float cancelRate;
 
+    public float wallslideSpeed;
+    public float wallJumpForce;
+    public float wallJumpTime;
+    public float wallLerp;
+
     public float coyoteTime;
     public float jumpBuffer;
 
@@ -34,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpCancelled;
     private bool doubleJump;
 
+    private bool wallSlide;
+    private bool wallJumping;
+
     private bool dashing;
     private bool canDash;
 
@@ -41,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashBufferCounter;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+    private float wallJumpCounter;
 
     private float moveInput;
     private Rigidbody2D rb;
@@ -72,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         jumpBufferCounter -= Time.deltaTime;
         dashCooldownCounter -= Time.deltaTime;
         dashBufferCounter -= Time.deltaTime;
+        wallJumpCounter -= Time.deltaTime;
 
         if (moveInput != 0)
         {
@@ -80,8 +90,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsGrounded())
         {
-            coyoteTimeCounter = coyoteTime;
             doubleJump = true;
+        }
+
+        if (IsGrounded() || wallSlide)
+        {
+            coyoteTimeCounter = coyoteTime;
+
+            if (!canDash && dashCooldownCounter < 0f)
+            {
+                canDash = true;
+            }
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -111,14 +130,10 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.y < 0f)
         {
             rb.gravityScale = fallGravityScale;
-            dashCooldownCounter = 0;
+            // dashCooldownCounter = 0;
             jumping = false;
         }
 
-        if (!canDash && IsGrounded() && dashCooldownCounter < 0f)
-        {
-            canDash = true;
-        }
 
         if (Input.GetButtonDown("Dash") && canDash)
         {
@@ -130,6 +145,13 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
+        if (wallJumping && wallJumpCounter < 0)
+        {
+            wallJumping = false;
+        }
+
+        WallSlide();
+
     }
 
     void FixedUpdate()
@@ -139,8 +161,15 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        // rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-        Run();
+        if (wallJumping)
+        {
+            Run(wallLerp);
+        }
+        else
+        {
+            Run(1f);
+        }
+
 
         if (jumpCancelled && jumping && rb.velocity.y > 0f)
         {
@@ -153,9 +182,16 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
     }
 
-    private void Run()
+    private bool IsWall()
+    {
+        Vector2 dir = (facingRight) ? Vector2.right : Vector2.left;
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, dir, 0.1f, jumpableGround);
+    }
+
+    private void Run(float lerp)
     {
         float tspeed = moveInput * speed;
+        tspeed = Mathf.Lerp(rb.velocity.x, tspeed, lerp);
         float speedDiff = tspeed - rb.velocity.x;
         float accelRate = (Mathf.Abs(tspeed) > 0.01f) ? accel : decel;
         if (!IsGrounded())
@@ -184,10 +220,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        if (wallSlide)
+        {
+            WallJump();
+        }
+
         jumping = true;
         jumpCancelled = false;
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
+    }
+
+    private void WallJump()
+    {
+        Vector2 dir = (facingRight) ? Vector2.left : Vector2.right;
+        rb.AddForce(dir * wallJumpForce, ForceMode2D.Impulse);
+        wallJumping = true;
+        doubleJump = false;
+        wallJumpCounter = wallJumpTime;
     }
 
     private IEnumerator Dash()
@@ -220,6 +271,19 @@ public class PlayerMovement : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
+        }
+    }
+
+    private void WallSlide()
+    {
+        if (IsWall() && !IsGrounded() && moveInput != 0f)
+        {
+            wallSlide = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallslideSpeed, float.MaxValue));
+        }
+        else
+        {
+            wallSlide = false;
         }
     }
 }

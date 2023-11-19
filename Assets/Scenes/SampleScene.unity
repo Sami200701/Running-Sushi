@@ -3139,6 +3139,10 @@ MonoBehaviour:
   gravityScale: 5
   fallGravityScale: 10
   cancelRate: 100
+  wallslideSpeed: 0
+  wallJumpForce: 0
+  wallJumpTime: 0
+  wallLerp: 0
   coyoteTime: 0.05
   jumpBuffer: 0.05
   jumpableGround:
@@ -4287,7 +4291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f67ce52ca517021c81e936e52bf7aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 10
   accel: 10
   decel: 10
   inAirAccel: 1
@@ -4295,6 +4299,10 @@ MonoBehaviour:
   gravityScale: 5
   fallGravityScale: 10
   cancelRate: 100
+  wallslideSpeed: 5
+  wallJumpForce: 10
+  wallJumpTime: 0.125
+  wallLerp: 0.1
   coyoteTime: 0.05
   jumpBuffer: 0.05
   jumpableGround:
