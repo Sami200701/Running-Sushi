@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool jumping;
     private bool jumpCancelled;
+    private bool doubleJump;
 
     private bool dashing;
     private bool canDash;
@@ -80,15 +81,21 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
+            doubleJump = true;
         }
 
-        if (Input.GetButtonDown("Jump") && !jumping)
+        if (Input.GetButtonDown("Jump"))
         {
             jumpBufferCounter = jumpBuffer;
         }
 
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
+            Jump();
+        }
+        else if (jumpBufferCounter > 0f && doubleJump)
+        {
+            doubleJump = false;
             Jump();
         }
 
