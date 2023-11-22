@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool dash;
+    public bool doubleJump;
+    public bool wallJump;
+
     public float speed;
     public float accel;
     public float decel;
@@ -37,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool jumping;
     private bool jumpCancelled;
-    private bool doubleJump;
+    private bool canDoubleJump;
 
     private bool wallSlide;
     private bool wallJumping;
@@ -64,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
 
         facingRight = true;
-        canDash = true;
+        canDash = dash;
     }
 
     // Update is called once per frame
@@ -90,16 +94,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsGrounded())
         {
-            doubleJump = true;
+            canDoubleJump = doubleJump;
         }
 
         if (IsGrounded() || wallSlide)
         {
             coyoteTimeCounter = coyoteTime;
 
-            if (!canDash && dashCooldownCounter < 0f)
+            if (dashCooldownCounter < 0f)
             {
-                canDash = true;
+                canDash = dash;
             }
         }
 
@@ -112,9 +116,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-        else if (jumpBufferCounter > 0f && doubleJump)
+        else if (jumpBufferCounter > 0f && canDoubleJump)
         {
-            doubleJump = false;
+            canDoubleJump = false;
             Jump();
         }
 
@@ -237,7 +241,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = (facingRight) ? Vector2.left : Vector2.right;
         rb.AddForce(dir * wallJumpForce, ForceMode2D.Impulse);
         wallJumping = true;
-        doubleJump = false;
+        canDoubleJump = false;
         wallJumpCounter = wallJumpTime;
     }
 
@@ -276,7 +280,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
-        if (IsWall() && !IsGrounded() && moveInput != 0f)
+        if (wallJump && IsWall() && !IsGrounded() && moveInput != 0f)
         {
             wallSlide = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallslideSpeed, float.MaxValue));
