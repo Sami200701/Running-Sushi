@@ -59,9 +59,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D coll;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = fallGravityScale;
 
@@ -194,6 +198,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Run(float lerp)
     {
+        animator.SetBool("IsRunning", true);//////////aqui puse el IsRunning(pero no se si seria aqui)
+
         float tspeed = moveInput * speed;
         tspeed = Mathf.Lerp(rb.velocity.x, tspeed, lerp);
         float speedDiff = tspeed - rb.velocity.x;
