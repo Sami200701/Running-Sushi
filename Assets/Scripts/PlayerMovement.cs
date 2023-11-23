@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = fallGravityScale;
@@ -93,8 +93,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveInput != 0)
         {
+            animator.SetBool("IsRunning", true);//running animation
+
             Flip();
         }
+        else if(moveInput == 0) { animator.SetBool("IsRunning", false); }//idle animation
 
         if (IsGrounded())
         {
@@ -198,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Run(float lerp)
     {
-        animator.SetBool("IsRunning", true);//////////aqui puse el IsRunning(pero no se si seria aqui)
+        
 
         float tspeed = moveInput * speed;
         tspeed = Mathf.Lerp(rb.velocity.x, tspeed, lerp);
@@ -214,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
             accelRate = 0;
         }
 
-        float movement = speedDiff * accelRate;
+            float movement = speedDiff * accelRate;
 
         rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
     }
