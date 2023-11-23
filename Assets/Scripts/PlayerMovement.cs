@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool facingRight;
 
-    private bool jumping;
+    public bool jumping;
     private bool jumpCancelled;
     private bool canDoubleJump;
 
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferCounter;
     private float wallJumpCounter;
 
-    private float moveInput;
+    public float moveInput;
     private Rigidbody2D rb;
     private BoxCollider2D coll;
 
@@ -63,8 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        animator = GetComponentInChildren<Animator>();
+    {        
 
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = fallGravityScale;
@@ -91,17 +90,9 @@ public class PlayerMovement : MonoBehaviour
         dashBufferCounter -= Time.deltaTime;
         wallJumpCounter -= Time.deltaTime;
 
-        if (moveInput != 0)
-        {
-            animator.SetBool("IsJumping", false);
-            animator.SetBool("IsRunning", true);//running animation
-
+        if (moveInput != 0) { 
             Flip();
         }
-        if(moveInput == 0) { 
-            animator.SetBool("IsJumping", false); 
-            animator.SetBool("IsRunning", false); }//idle animation
-
         
 
         if (IsGrounded())
@@ -194,9 +185,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
-    {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
+    public bool IsGrounded()
+    {        
+        bool ground = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);        
+        return ground;
     }
 
     private bool IsWall()
@@ -230,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        animator.SetBool("IsJumping", true);//jumping animation
+
         rb.gravityScale = gravityScale;
         float jumpForce = Mathf.Sqrt(jumpHeight * (Physics2D.gravity.y * rb.gravityScale) * -2f) * rb.mass;
 
