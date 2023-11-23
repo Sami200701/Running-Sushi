@@ -93,11 +93,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveInput != 0)
         {
+            animator.SetBool("IsJumping", false);
             animator.SetBool("IsRunning", true);//running animation
 
             Flip();
         }
-        else if(moveInput == 0) { animator.SetBool("IsRunning", false); }//idle animation
+        if(moveInput == 0) { 
+            animator.SetBool("IsJumping", false); 
+            animator.SetBool("IsRunning", false); }//idle animation
+
+        
 
         if (IsGrounded())
         {
@@ -130,7 +135,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (jumping)
-        {
+        {         
+
             if (Input.GetButtonUp("Jump"))
             {
                 jumpCancelled = true;
@@ -224,6 +230,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        animator.SetBool("IsJumping", true);//jumping animation
         rb.gravityScale = gravityScale;
         float jumpForce = Mathf.Sqrt(jumpHeight * (Physics2D.gravity.y * rb.gravityScale) * -2f) * rb.mass;
 
@@ -233,11 +240,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
+        
         if (wallSlide)
         {
             WallJump();
-        }
+        }           
 
         jumping = true;
         jumpCancelled = false;
@@ -280,7 +287,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (facingRight && moveInput < 0f || !facingRight && moveInput > 0f)
         {
-            facingRight = !facingRight;
+            facingRight = !facingRight;            
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
