@@ -7,6 +7,14 @@ public class GameMaster : MonoBehaviour
     private static GameMaster instance;
     public Vector2 lastCheckPointPos;
 
+    public bool preDash;
+    public bool preWallJump;
+    public bool preDoubleJump;
+    
+    public bool dash;
+    public bool wallJump;
+    public bool doubleJump;
+
     void Awake()
     {
         if (instance == null)
@@ -18,6 +26,13 @@ public class GameMaster : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SaveState()
+    {
+        doubleJump = preDoubleJump;
+        wallJump = preWallJump;
+        dash = preDash;
     }
     // Start is called before the first frame update
     void Start()

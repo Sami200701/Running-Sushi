@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gm.lastCheckPointPos = transform.position;
+            gm.SaveState();
         }
     }
     // Start is called before the first frame update
