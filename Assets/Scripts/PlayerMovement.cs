@@ -56,8 +56,8 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpCounter;
 
     public float moveInput;
-    private Rigidbody2D rb;
-    private BoxCollider2D coll;
+    public Rigidbody2D rb;
+    public BoxCollider2D coll;
 
     private Animator animator;
 
@@ -191,13 +191,13 @@ public class PlayerMovement : MonoBehaviour
         return ground;
     }
 
-    private bool IsWall()
+    public bool IsWall()
     {
         Vector2 dir = (facingRight) ? Vector2.right : Vector2.left;
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, dir, 0.1f, jumpableGround);
     }
 
-    private void Run(float lerp)
+    public void Run(float lerp)
     {
         
 
