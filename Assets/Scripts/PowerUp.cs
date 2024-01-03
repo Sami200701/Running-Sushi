@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PowerUp : MonoBehaviour
 {
     public int pupCode; //0: doubleJump, 1: wallJump, 2: dash
     private GameMaster gm;
     private PlayerMovement playerMov;
+
+    public GameObject pickupEffect;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -32,6 +36,8 @@ public class PowerUp : MonoBehaviour
                 gm.preDash = true;
                 break;
         }
+
+        Instantiate(pickupEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
@@ -60,5 +66,10 @@ public class PowerUp : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    private void Update()
+    {
+        transform.Rotate(0, .3f, 0);
     }
 }
