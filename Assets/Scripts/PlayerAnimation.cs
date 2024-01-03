@@ -22,7 +22,6 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         animator.SetBool("IsGrounded", pmov.IsGrounded());
-
         if (pmov.moveInput != 0)
         {
             animator.SetBool("IsRunning", true);//running animation
