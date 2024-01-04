@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool autoDoubleJump;
     public bool dash;
     public bool doubleJump;
     public bool wallJump;
@@ -63,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
 
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = fallGravityScale;
@@ -90,10 +91,10 @@ public class PlayerMovement : MonoBehaviour
         dashBufferCounter -= Time.deltaTime;
         wallJumpCounter -= Time.deltaTime;
 
-        if (moveInput != 0) { 
+        if (moveInput != 0) {
             Flip();
         }
-        
+
 
         if (IsGrounded())
         {
@@ -108,6 +109,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 canDash = dash;
             }
+        }
+
+        // automatic double jump
+        if (autoDoubleJump && Input.GetButton("Jump") && !jumping)
+        {
+            jumpBufferCounter = jumpBuffer;
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -126,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (jumping)
-        {         
+        {
 
             if (Input.GetButtonUp("Jump"))
             {
@@ -186,8 +193,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool IsGrounded()
-    {        
-        bool ground = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);        
+    {
+        bool ground = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
         return ground;
     }
 
@@ -199,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Run(float lerp)
     {
-        
+
 
         float tspeed = moveInput * speed;
         tspeed = Mathf.Lerp(rb.velocity.x, tspeed, lerp);
@@ -232,11 +239,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        
+
         if (wallSlide)
         {
             WallJump();
-        }           
+        }
 
         jumping = true;
         jumpCancelled = false;
@@ -279,7 +286,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (facingRight && moveInput < 0f || !facingRight && moveInput > 0f)
         {
-            facingRight = !facingRight;            
+            facingRight = !facingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
