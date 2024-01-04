@@ -3033,6 +3033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ab4e0bf3e37b045b84e2c76c8443f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jugador: {fileID: 0}
+  correr: {fileID: 0}
+  saltar: {fileID: 0}
 --- !u!1001 &531115042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4775,6 +4778,10 @@ PrefabInstance:
       value: waiter (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5881575557901636073, guid: 679c0aa66d2cfcf4ebcd0730bf40e4b7, type: 3}
+      propertyPath: collisionIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881575557901636073, guid: 679c0aa66d2cfcf4ebcd0730bf40e4b7, type: 3}
       propertyPath: pathPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1229978148}
@@ -6310,6 +6317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pupCode: 0
+  powerUpSound: {fileID: 0}
   pickupEffect: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
@@ -9060,6 +9068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pupCode: 1
+  powerUpSound: {fileID: 0}
   pickupEffect: {fileID: 0}
 --- !u!61 &1372130409
 BoxCollider2D:
@@ -14373,6 +14382,10 @@ PrefabInstance:
       value: waiter (3)
       objectReference: {fileID: 0}
     - target: {fileID: 5881575557901636073, guid: 679c0aa66d2cfcf4ebcd0730bf40e4b7, type: 3}
+      propertyPath: collisionIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881575557901636073, guid: 679c0aa66d2cfcf4ebcd0730bf40e4b7, type: 3}
       propertyPath: pathPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1229978148}
@@ -14969,6 +14982,10 @@ PrefabInstance:
     - target: {fileID: 699700150382967546, guid: 679c0aa66d2cfcf4ebcd0730bf40e4b7, type: 3}
       propertyPath: m_Name
       value: waiter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881575557901636073, guid: 679c0aa66d2cfcf4ebcd0730bf40e4b7, type: 3}
+      propertyPath: collisionIndex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5881575557901636073, guid: 679c0aa66d2cfcf4ebcd0730bf40e4b7, type: 3}
       propertyPath: pathPoints.Array.data[0]

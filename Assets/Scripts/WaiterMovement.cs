@@ -9,9 +9,10 @@ public class WaiterMovement : MonoBehaviour
 {
     public Transform[] pathPoints;  // Array de puntos en la ruta rectangular
     public float speed = 2f;        // Velocidad de movimiento
+    public int collisionIndex;
 
     private Transform targetPoint;
-    private int currentPointIndex = 0;  // Índice del punto actual en la ruta
+    private int currentPointIndex = 0;  // ï¿½ndice del punto actual en la ruta
 
     void Start()
     {
@@ -31,8 +32,18 @@ public class WaiterMovement : MonoBehaviour
             targetPoint = pathPoints[currentPointIndex];
         }
 
+        if (currentPointIndex != collisionIndex)
+        {
+            transform.Find("tray").gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
         // Mira hacia el punto objetivo
         transform.LookAt(targetPoint);
+
+        if (currentPointIndex == collisionIndex)
+        {
+            transform.Find("tray").gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
     }
 }
 
