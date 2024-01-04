@@ -116,13 +116,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        // automatic double jump
-        if (autoDoubleJump && Input.GetButton("Jump") && !jumping)
-        {
-            jumpBufferCounter = jumpBuffer;
-        }
-
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || (autoDoubleJump && Input.GetButton("Jump") && !jumping))
         {
             jumpBufferCounter = jumpBuffer;
         }
