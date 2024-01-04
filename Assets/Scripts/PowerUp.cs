@@ -9,6 +9,7 @@ public class PowerUp : MonoBehaviour
     public int pupCode; //0: doubleJump, 1: wallJump, 2: dash
     private GameMaster gm;
     private PlayerMovement playerMov;
+    public AudioClip powerUpSound;
 
     public GameObject pickupEffect;
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,8 +37,12 @@ public class PowerUp : MonoBehaviour
                 gm.preDash = true;
                 break;
         }
-
+        
         Instantiate(pickupEffect, transform.position, transform.rotation);
+        if (powerUpSound != null)
+        {
+            AudioSource.PlayClipAtPoint(powerUpSound, transform.position);
+        }
         Destroy(gameObject);
     }
 
