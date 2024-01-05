@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Nivel.unity
     guid: 7c4963d56bce0154fa8508bf8caee96b
   - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: 724d019e4dec69a4f874760e1af1ff4b
+  - enabled: 1
     path: Assets/Scenes/PruebaMateriales.unity
     guid: 74aadf8fa1dc6b14196752d61d981896
+  - enabled: 1
+    path: Assets/Scenes/creditos.unity
+    guid: b4b019d298a95e44d9fd20d7c6e71653
   m_configObjects: {}
