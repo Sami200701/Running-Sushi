@@ -304,4 +304,9 @@ public class PlayerMovement : MonoBehaviour
             wallSlide = false;
         }
     }
+
+    public void setModifier(bool mod)
+    {
+        autoDoubleJump = mod;
+    }
 }
