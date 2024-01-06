@@ -38,6 +38,7 @@ public class PowerUp : MonoBehaviour
         }
 
         Instantiate(pickupEffect, transform.position, transform.rotation);
+        FindObjectOfType<AudioManager>().Play("PowerUp");
         Destroy(gameObject);
     }
 

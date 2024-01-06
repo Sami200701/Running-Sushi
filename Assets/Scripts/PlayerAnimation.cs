@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator animator;
     private PlayerMovement pmov;
+    
+    private bool corriendoSonando = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +27,28 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         animator.SetBool("IsGrounded", pmov.IsGrounded());
-        if (pmov.moveInput != 0)
+        if (pmov.moveInput != 0 && pmov.IsGrounded())
         {
             animator.SetBool("IsRunning", true);//running animation
+            if (!corriendoSonando)
+            {
+                corriendoSonando = true;
+                FindObjectOfType<AudioManager>().Play("Running");
+            }
         }
-        else animator.SetBool("IsRunning", false);//idle animation
+        else
+        {
+            corriendoSonando = false;
+            animator.SetBool("IsRunning", false); //idle animation
+            FindObjectOfType<AudioManager>().Stop("Running");
+        }
+    
 
         animator.SetBool("IsJumping", pmov.jumping);
-
+        if ((Input.GetButtonDown("Jump") && pmov.IsGrounded()) || (Input.GetButtonDown("Jump") && pmov.doubleJump && !pmov.IsGrounded()))
+        {
+            FindObjectOfType<AudioManager>().Play("Jump");
+        }
+        
     }
 }
