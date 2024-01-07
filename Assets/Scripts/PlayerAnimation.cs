@@ -45,7 +45,7 @@ public class PlayerAnimation : MonoBehaviour
     
 
         animator.SetBool("IsJumping", pmov.jumping);
-        if ((Input.GetButtonDown("Jump") && pmov.IsGrounded()) || (Input.GetButtonDown("Jump") && pmov.doubleJump && !pmov.IsGrounded()))
+        if ((Input.GetButtonDown("Jump") && pmov.IsGrounded()) || (Input.GetButtonDown("Jump") && !pmov.IsGrounded() && pmov.doubleJump) || (pmov.autoDoubleJump && Input.GetButton("Jump") && !pmov.jumping))
         {
             FindObjectOfType<AudioManager>().Play("Jump");
         }

@@ -45736,7 +45736,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
       propertyPath: sounds.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
       propertyPath: sounds.Array.data[1].clip
@@ -45755,11 +45755,23 @@ PrefabInstance:
       value: Death
       objectReference: {fileID: 0}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
+      propertyPath: sounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1705ec2e517b62c4dbb31e29b46fa6c2, type: 3}
+    - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
+      propertyPath: sounds.Array.data[5].name
+      value: DoubleJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
       propertyPath: sounds.Array.data[1].volume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
       propertyPath: sounds.Array.data[4].volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
+      propertyPath: sounds.Array.data[5].volume
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
@@ -45772,6 +45784,10 @@ PrefabInstance:
       objectReference: {fileID: 7519507961439098418, guid: 5a49c908f3078d2418933485988179b0, type: 2}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
       propertyPath: sounds.Array.data[4].mixerGroup
+      value: 
+      objectReference: {fileID: 7519507961439098418, guid: 5a49c908f3078d2418933485988179b0, type: 2}
+    - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
+      propertyPath: sounds.Array.data[5].mixerGroup
       value: 
       objectReference: {fileID: 7519507961439098418, guid: 5a49c908f3078d2418933485988179b0, type: 2}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
