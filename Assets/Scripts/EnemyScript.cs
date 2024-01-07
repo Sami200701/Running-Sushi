@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnemyController : MonoBehaviour
+public class EnemyScript : MonoBehaviour
 {
 
     void OnTriggerEnter2D(Collider2D other)
