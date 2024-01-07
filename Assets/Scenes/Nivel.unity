@@ -6084,7 +6084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8afad26056a8764aa7b3f8d4f645978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastCheckPointPos: {x: 320, y: 24}
+  lastCheckPointPos: {x: 0, y: 0.5}
   preDash: 0
   preWallJump: 0
   preDoubleJump: 0
@@ -6100,7 +6100,7 @@ Transform:
   m_GameObject: {fileID: 296035499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.5, z: 21.7}
+  m_LocalPosition: {x: 340, y: 0.5, z: 21.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
