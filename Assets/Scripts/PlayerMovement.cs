@@ -309,4 +309,14 @@ public class PlayerMovement : MonoBehaviour
     {
         autoDoubleJump = mod;
     }
+
+    public void RotatePlayer(float angle)//para cuando muere
+    {
+        
+        if (transform != null)
+        {
+            // Rotar el jugador en el eje Z 
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+    }
 }
