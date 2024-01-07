@@ -1,14 +1,19 @@
 fileFormatVersion: 2
-guid: 131e9c65fa12e4e4b8b82b2b0fd0b1ad
+guid: 3d1bf5e6270b1cb48a58acf293e3ec11
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KitchenSink
+    second: {fileID: 2100000, guid: ea90c4f2e8013bb46810548990bc92a8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

@@ -3,47 +3,7 @@ guid: e7e097191981229449bac20e4403c102
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ch41_body
-    second: {fileID: 2100000, guid: 3f42dede9b051f9489b863fb10795d51, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ch41_hair
-    second: {fileID: 2100000, guid: 21f4278a5808e114c97d92a189000373, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch41_1001_Diffuse
-    second: {fileID: 2800000, guid: b061ee5000b4f9d4fb87d4d68dad6ea4, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch41_1001_Glossiness
-    second: {fileID: 2800000, guid: bf2efff61a8af7c48a87bb727a4ccbee, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch41_1001_Normal
-    second: {fileID: 2800000, guid: 2b47363b817595a488be259a4e472da4, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch41_1001_Specular
-    second: {fileID: 2800000, guid: f906379d0bf07174fa88e4ff00aa53c0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch41_1002_Diffuse
-    second: {fileID: 2800000, guid: bea9aa734ff54bf44b1ae10d951b0839, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch41_1002_Normal
-    second: {fileID: 2800000, guid: 1d816941b2181cf4593fc8f7b031e452, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -73,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: mixamo.com (1)
       takeName: mixamo.com
-      internalID: -203655887218126122
+      internalID: -6136128900418407598
       firstFrame: 0
-      lastFrame: 259
+      lastFrame: 299
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -85,6 +45,35 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: mixamo.com
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 299
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
