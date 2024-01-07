@@ -17,30 +17,41 @@ public class FireController : MonoBehaviour
     {
         while (true)
         {
-            // Activate the first and second flames
+            // Activar llama 1,3,5,7,9
             fireEffects[0].SetActive(true);
-            fireEffects[1].SetActive(true);
+            fireEffects[2].SetActive(true);
+            fireEffects[4].SetActive(true);
+            fireEffects[6].SetActive(true);
+            fireEffects[8].SetActive(true);
 
             // Wait for a duration
             yield return new WaitForSeconds(firstSecondFlameDuration);
 
-            // Deactivate the first flame
+            // Desactivar la 1,3,5,7,9
             fireEffects[0].SetActive(false);
-
-            // Deactivate the second flame
-            fireEffects[1].SetActive(false);
+            fireEffects[2].SetActive(false);
+            fireEffects[4].SetActive(false);
+            fireEffects[6].SetActive(false);
+            fireEffects[8].SetActive(false);
 
             // Wait for the remaining duration
             yield return new WaitForSeconds(timeBetweenToggle - firstSecondFlameDuration);
 
-            // Activate the third flame
-            fireEffects[2].SetActive(true);
+            // Activar la 2,4,6 y 8
+            fireEffects[1].SetActive(true);
+            fireEffects[3].SetActive(true);
+            fireEffects[5].SetActive(true);
+            fireEffects[7].SetActive(true);
+
 
             // Wait for the full timeBetweenToggle before starting the next cycle
             yield return new WaitForSeconds(timeBetweenToggle);
 
-            // Deactivate the third flame
-            fireEffects[2].SetActive(false);
+            // Desactivar la 2,4,6,8
+            fireEffects[1].SetActive(false);
+            fireEffects[3].SetActive(false);
+            fireEffects[5].SetActive(false);
+            fireEffects[7].SetActive(false);
         }
     }
 }
