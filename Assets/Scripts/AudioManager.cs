@@ -65,6 +65,29 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+    public void Pause(string name)
+    {
+        Sounds s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        s.source.Pause();
+    }
+    public void UnPause(string name)
+    {
+        Sounds s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        s.source.UnPause();
+    }
+
     void LoadVolume()
     {
         float musicVolume = PlayerPrefs.GetFloat(MUSIC_KEY, 1f);

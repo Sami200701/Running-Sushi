@@ -10,6 +10,9 @@ public class EnemyScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Destroy(other.gameObject);
+            FindObjectOfType<AudioManager>().Play("Death");
+            FindObjectOfType<AudioManager>().Pause("Theme");
+            FindObjectOfType<AudioManager>().Stop("Running");
             StartCoroutine(WaitAndDie());
         }
     }
@@ -18,5 +21,6 @@ public class EnemyScript : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FindObjectOfType<AudioManager>().UnPause("Theme");
     }
 }

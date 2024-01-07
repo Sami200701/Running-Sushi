@@ -45735,6 +45735,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
+      propertyPath: sounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
       propertyPath: sounds.Array.data[1].clip
       value: 
       objectReference: {fileID: 8300000, guid: 385b05c09e3167e48aec8a5af5b7c415, type: 3}
@@ -45743,8 +45747,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
+      propertyPath: sounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fd6d218977cb4174fbf891823cbd61d6, type: 3}
+    - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
+      propertyPath: sounds.Array.data[4].name
+      value: Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
       propertyPath: sounds.Array.data[1].volume
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
+      propertyPath: sounds.Array.data[4].volume
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
       propertyPath: sounds.Array.data[2].mixerGroup
@@ -45752,6 +45768,10 @@ PrefabInstance:
       objectReference: {fileID: 7519507961439098418, guid: 5a49c908f3078d2418933485988179b0, type: 2}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
       propertyPath: sounds.Array.data[3].mixerGroup
+      value: 
+      objectReference: {fileID: 7519507961439098418, guid: 5a49c908f3078d2418933485988179b0, type: 2}
+    - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
+      propertyPath: sounds.Array.data[4].mixerGroup
       value: 
       objectReference: {fileID: 7519507961439098418, guid: 5a49c908f3078d2418933485988179b0, type: 2}
     - target: {fileID: 4678321803189552203, guid: f33759eb98f3abd43a65342ce719bfe8, type: 3}
