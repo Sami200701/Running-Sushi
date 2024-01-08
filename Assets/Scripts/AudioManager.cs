@@ -2,6 +2,7 @@ using UnityEngine.Audio;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class AudioManager : MonoBehaviour
     public const String MUSIC_KEY = "MusicVolume";
     public const String SFX_KEY = "SFXVolume";
     public const String MASTER_KEY = "MasterVolume";
+    public bool isPlayingMenu = false;
+    public bool isPlayingTheme = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,10 +39,68 @@ public class AudioManager : MonoBehaviour
         }       
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    
     void Start()
     {
         LoadVolume();
-        Play("Theme");
+        string nombreDeEscena = SceneManager.GetActiveScene().name;
+        if (nombreDeEscena.Equals("creditos"))
+        {
+            Play("FinalTheme");
+        }
+        else if (nombreDeEscena.Equals("StartMenu"))
+        {
+            Play("MenuTheme");
+        }
+        else
+        {
+            Play("Theme");
+        }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Lógica para reproducir sonidos asociados a la carga de escena
+        string sceneName = scene.name;
+        if (sceneName.Equals("creditos"))
+        {
+            if (isPlayingTheme)
+            {
+                Stop("Theme");
+                isPlayingTheme = false;
+            }
+            Play("FinalTheme");
+        }
+        else if (sceneName.Equals("StartMenu"))
+        {
+            if (isPlayingTheme)
+            {
+                Stop("Theme");
+                isPlayingTheme = false;
+            }
+            Play("MenuTheme");
+            isPlayingMenu = true;
+        }
+        else
+        {
+            if (isPlayingMenu)
+            {
+                Stop("MenuTheme");
+                isPlayingMenu = false;
+            }
+            Play("Theme");
+            isPlayingTheme = true;
+            
+        }
     }
 
     public void Play(string name)
