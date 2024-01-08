@@ -38,7 +38,7 @@ public class EnemyScript : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f); // tiempo antes de ser destruido
 
-        Destroy(player);
+        //Destroy(player);
 
         
 

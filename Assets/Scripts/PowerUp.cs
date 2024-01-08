@@ -10,7 +10,6 @@ public class PowerUp : MonoBehaviour
     private GameMaster gm;
     private PlayerMovement playerMov;
 
-    public GameObject pickupEffect;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -37,7 +36,6 @@ public class PowerUp : MonoBehaviour
                 break;
         }
 
-        Instantiate(pickupEffect, transform.position, transform.rotation);
         FindObjectOfType<AudioManager>().Play("PowerUp");
         Destroy(gameObject);
     }
