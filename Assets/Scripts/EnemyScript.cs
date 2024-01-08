@@ -21,6 +21,9 @@ public class EnemyScript : MonoBehaviour
         // Detener el movimiento del jugador y rotarlo en 90 grados.
         Rigidbody2D playerRigidbody = player.GetComponent<Rigidbody2D>();
         PlayerMovement playerController = player.GetComponent<PlayerMovement>();
+        FindObjectOfType<AudioManager>().Play("Death");
+        FindObjectOfType<AudioManager>().Pause("Theme");
+        FindObjectOfType<AudioManager>().Stop("Running");
 
         if (playerRigidbody != null)
         {
@@ -37,9 +40,7 @@ public class EnemyScript : MonoBehaviour
 
         Destroy(player);
 
-        FindObjectOfType<AudioManager>().Play("Death");
-        FindObjectOfType<AudioManager>().Pause("Theme");
-        FindObjectOfType<AudioManager>().Stop("Running");
+        
 
         yield return new WaitForSeconds(1f);
 

@@ -38,6 +38,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        LoadVolume();
         Play("Theme");
     }
 
