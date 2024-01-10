@@ -45,6 +45,5 @@ public class EnemyScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        FindObjectOfType<AudioManager>().UnPause("Theme");
     }
 }

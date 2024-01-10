@@ -87,4 +87,13 @@ MonoBehaviour:
     playOnAwake: 0
     mixerGroup: {fileID: -1455727649782291809, guid: 5a49c908f3078d2418933485988179b0, type: 2}
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: fd6d218977cb4174fbf891823cbd61d6, type: 3}
+    name: Death
+    volume: 0.8
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 7519507961439098418, guid: 5a49c908f3078d2418933485988179b0, type: 2}
+    source: {fileID: 0}
   mixer: {fileID: 24100000, guid: 5a49c908f3078d2418933485988179b0, type: 2}
+  isPlayingMenu: 0
+  isPlayingTheme: 0
